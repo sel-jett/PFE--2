@@ -2,9 +2,9 @@
   <form @submit.prevent="login">
     <div >
       <div>
-        <label for="email">E-mail</label>
-        <input id="email" v-model="form.email" type="text"  />
-        <div v-if="form.errors.email" class="input-error">{{ form.errors.email }}</div>
+        <label for="username">Username</label>
+        <input id="username" v-model="form.username" type="text"  />
+        <div v-if="form.errors.username" class="input-error">{{ form.errors.username }}</div>
       </div>
       <div >
         <label for="password" >Password</label>
@@ -21,7 +21,7 @@
 <script setup>
 import { useForm } from '@inertiajs/inertia-vue3'
 const form = useForm({
-  email: null,
+  username: null,
   password: null,
 })
 const login = () => form.post(route('login.store'))
