@@ -65,7 +65,7 @@ class CourseController extends Controller
         return inertia(
             'Course/Show',
             [
-                'courses' => $course,
+                'course' => $course,
             ]
         );
     }
@@ -76,9 +76,14 @@ class CourseController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Course $course)
     {
-        //
+        return inertia(
+            'Course/Edit',
+            [
+                'course' => $course,
+            ]
+        );
     }
 
     /**
@@ -88,9 +93,19 @@ class CourseController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Course $course)
     {
-        //
+        $course->update(
+            $request->validate([
+                'Course_name' => 'required',
+                'Category' => 'required',
+                'Description' => 'required',
+                'Price' => 'required|integer|min:1|max:1000',
+            ])
+        );
+
+        return redirect()->route('course.index')
+            ->with('success', 'course was changed!');
     }
 
     /**

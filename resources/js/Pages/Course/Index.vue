@@ -1,8 +1,13 @@
 <template>
   <div v-for="course in courses" :key="course.id">
-    <Link :href="`/course/${course.id}`">
-      <CourseAdresse :course="course" />
-    </Link>
+    <div>
+        <Link :href="`/course/${course.id}`">
+            <CourseAdresse :course="course" />
+        </Link>
+    </div>
+    <div>
+        <Link :href="`/course/${course.id}/edit`">Edit</Link>
+    </div>
   </div>
 </template>
 
