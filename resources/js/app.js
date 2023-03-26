@@ -2,7 +2,6 @@ import { createApp, h } from 'vue'
 import { createInertiaApp } from '@inertiajs/inertia-vue3'
 import MainLayout from '@/Layouts/MainLayout.vue'
 import { ZiggyVue } from 'ziggy'
-import { InertiaProgress } from '@inertiajs/progress'
 import '../css/app.css'
 
 createInertiaApp({
