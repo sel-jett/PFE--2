@@ -121,6 +121,9 @@
   const flashSuccess = computed(
     () => page.props.value.flash.success,
   )
+  const user = computed(
+  () => page.props.value.user,
+)
 </script>
 
 
