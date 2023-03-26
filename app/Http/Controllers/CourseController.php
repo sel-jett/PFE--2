@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Course;
+use GuzzleHttp\Promise\Create;
 use Illuminate\Http\Request;
 
 class CourseController extends Controller
@@ -29,7 +30,7 @@ class CourseController extends Controller
      */
     public function create()
     {
-        //
+        return inertia('Course/Create');
     }
 
     /**
@@ -40,7 +41,17 @@ class CourseController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        Course::create(
+            $request->validate([
+                'Course_name' => 'required',
+                'Category' => 'required',
+                'Description' => 'required',
+                'Price' => 'required|integer|min:1|max:1000',
+            ])
+        );
+
+        return redirect()->route('course.index')
+            ->with('success', 'course was created!');
     }
 
     /**
