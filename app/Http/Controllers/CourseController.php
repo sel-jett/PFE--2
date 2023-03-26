@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Course;
 use Illuminate\Http\Request;
 
 class CourseController extends Controller
@@ -13,7 +14,12 @@ class CourseController extends Controller
      */
     public function index()
     {
-        //
+        return inertia(
+            'Course/Index',
+            [
+                'courses' => Course::all(),
+            ]
+        );
     }
 
     /**
@@ -43,9 +49,14 @@ class CourseController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Course $course)
     {
-        //
+        return inertia(
+            'Course/Show',
+            [
+                'courses' => $course,
+            ]
+        );
     }
 
     /**
