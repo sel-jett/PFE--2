@@ -6,7 +6,10 @@
         </Link>
     </div>
     <div>
-        <Link :href="`/course/${course.id}/edit`">Edit</Link>
+        <Link :href="`/course/${course.id}/edit`" as="button">Edit</Link>
+    </div>
+    <div>
+        <Link :href="`/course/${course.id}`" method="DELETE" as="button">Delete</Link>
     </div>
   </div>
 </template>

@@ -18,4 +18,4 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', [IndexController::class, 'index']);
 Route::get('/hello', [IndexController::class, 'show']);
 
-Route::resource('course', CourseController::class)->except(['destroy']);
+Route::resource('course', CourseController::class);
