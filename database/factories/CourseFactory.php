@@ -17,7 +17,10 @@ class CourseFactory extends Factory
     public function definition()
     {
         return [
-            'Course_name' => fake()->nam
+            'Course_name' => fake()->word(),
+            'Description' => fake()->text(),
+            'Category' => fake()->word(),
+            'Price' => fake()->numberBetween(100, 500),
         ];
     }
 }
