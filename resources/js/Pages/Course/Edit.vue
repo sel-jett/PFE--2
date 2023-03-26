@@ -3,38 +3,38 @@
     <div>
       <div>
         <label>Course Name</label>
-        <input v-model="form.Course_name" type="text" />
-        <div v-if="form.errors.Course_name">
-          {{ form.errors.Course_name }}
+        <input v-model="form.course_name" type="text" />
+        <div v-if="form.errors.course_name">
+          {{ form.errors.course_name }}
         </div>
       </div>
 
       <div>
         <label>Category</label>
-        <input v-model="form.Category" type="text" />
-        <div v-if="form.errors.Category">
-          {{ form.errors.Category }}
+        <input v-model="form.category" type="text" />
+        <div v-if="form.errors.category">
+          {{ form.errors.category }}
         </div>
       </div>
 
       <div>
         <label>Description</label>
-        <input v-model="form.Description" type="text" />
-        <div v-if="form.errors.Description">
-          {{ form.errors.Description }}
+        <input v-model="form.description" type="text" />
+        <div v-if="form.errors.description">
+          {{ form.errors.description }}
         </div>
       </div>
 
       <div>
         <label>Price</label>
-        <input v-model.number="form.Price" type="text" />
-        <div v-if="form.errors.Price">
-          {{ form.errors.Price }}
+        <input v-model.number="form.price" type="text" />
+        <div v-if="form.errors.price">
+          {{ form.errors.price }}
         </div>
       </div>
 
       <div>
-        <button type="submit">Edit</button>
+        <button  type="submit">Edit</button>
       </div>
     </div>
   </form>
@@ -43,15 +43,15 @@
 <script setup>
 import { useForm } from '@inertiajs/inertia-vue3'
 const props = defineProps({
-  listing: Object,
+  course: Object,
 })
 const form = useForm({
-  Course_name: props.course.Course_name,
-  Category: props.course.Category,
-  Description: props.course.Description,
-  Price: props.course.price,
+  course_name: props.course.course_name,
+  category: props.course.category,
+  description: props.course.description,
+  price: props.course.price,
 })
-const update = () => form.put(`/course/${props.course.id}`)
+const update = () => form.put(route('course.update',{course: props.course.id}))
 </script>
 
 <style scoped>
