@@ -18,5 +18,6 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', [IndexController::class, 'index']);
 Route::get('/hello', [IndexController::class, 'show']);
 
+
 Route::get('/signin', [SigningController::class, 'signin']);
 Route::get('/signup', [SigningController::class, 'signup']);
