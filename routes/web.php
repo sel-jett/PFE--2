@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CourseController;
 use App\Http\Controllers\IndexController;
 use App\Http\Controllers\SigningController;
 use Illuminate\Support\Facades\Route;
@@ -18,6 +19,6 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', [IndexController::class, 'index']);
 Route::get('/hello', [IndexController::class, 'show']);
 
+Route::resource('course', CourseController::class);
 
-Route::get('/signin', [SigningController::class, 'signin']);
-Route::get('/signup', [SigningController::class, 'signup']);
+
