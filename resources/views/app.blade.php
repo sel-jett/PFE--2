@@ -5,9 +5,10 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>Naja7i</title>
+    <title>Larazillow</title>
     @vite('resources/js/app.js')
     @inertiaHead
+    @routes
 </head>
 
 <body>

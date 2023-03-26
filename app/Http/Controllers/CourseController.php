@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Course;
+use GuzzleHttp\Promise\Create;
 use Illuminate\Http\Request;
 
 class CourseController extends Controller
@@ -13,7 +15,12 @@ class CourseController extends Controller
      */
     public function index()
     {
-        //
+        return inertia(
+            'Course/Index',
+            [
+                'courses' => Course::all(),
+            ]
+        );
     }
 
     /**
@@ -23,7 +30,7 @@ class CourseController extends Controller
      */
     public function create()
     {
-        //
+        return inertia('Course/Create');
     }
 
     /**
@@ -34,7 +41,17 @@ class CourseController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        Course::create(
+            $request->validate([
+                'Course_name' => 'required',
+                'Category' => 'required',
+                'Description' => 'required',
+                'Price' => 'required|integer|min:1|max:1000',
+            ])
+        );
+
+        return redirect()->route('course.index')
+            ->with('success', 'course was created!');
     }
 
     /**
@@ -43,9 +60,14 @@ class CourseController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Course $course)
     {
-        //
+        return inertia(
+            'Course/Show',
+            [
+                'course' => $course,
+            ]
+        );
     }
 
     /**
@@ -54,9 +76,14 @@ class CourseController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Course $course)
     {
-        //
+        return inertia(
+            'Course/Edit',
+            [
+                'course' => $course,
+            ]
+        );
     }
 
     /**
@@ -66,9 +93,19 @@ class CourseController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Course $course)
     {
-        //
+        $course->update(
+            $request->validate([
+                'Course_name' => 'required',
+                'Category' => 'required',
+                'Description' => 'required',
+                'Price' => 'required|integer|min:1|max:1000',
+            ])
+        );
+
+        return redirect()->route('course.index')
+            ->with('success', 'course was changed!');
     }
 
     /**
@@ -77,8 +114,10 @@ class CourseController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Course $course)
     {
-        //
+        $course->delete();
+        return redirect()->back()
+        ->with('success','Course was deleted');
     }
 }
