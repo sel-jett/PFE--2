@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Course;
 use GuzzleHttp\Promise\Create;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class CourseController extends Controller
 {
@@ -13,6 +14,13 @@ class CourseController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
+    public function __construct()
+    {
+        $this->authorizeResource(Course::class, 'course');
+    }
+
+
     public function index()
     {
         return inertia(
@@ -41,7 +49,7 @@ class CourseController extends Controller
      */
     public function store(Request $request)
     {
-        Course::create(
+        $request->user()->courses()->create(
             $request->validate([
                 'Course_name' => 'required',
                 'Category' => 'required',
@@ -118,6 +126,6 @@ class CourseController extends Controller
     {
         $course->delete();
         return redirect()->back()
-        ->with('success','Course was deleted');
+            ->with('success', 'Course was deleted');
     }
 }

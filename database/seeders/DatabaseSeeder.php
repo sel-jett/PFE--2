@@ -30,6 +30,11 @@ class DatabaseSeeder extends Seeder
             'teacher' => 0,
         ]);
 
-        \App\Models\Course::factory(10)->create();
+        \App\Models\Course::factory(10)->create(
+            ['by_user_id' => 1]
+        );
+        \App\Models\Course::factory(10)->create(
+            ['by_user_id' => 2]
+        );
     }
 }

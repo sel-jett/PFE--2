@@ -25,12 +25,15 @@
       <div v-if="form.errors.password" class="input-error">{{ form.errors.password }}</div>
       
       <button type="submit" class="block w-full bg-blue-600 hover:bg-blue-400 transition duration-700 mt-4 py-2 rounded-2xl text-white font-semibold mb-2">Sign in</button>
-      <span class="italic text-sm ml-2 cursor-pointer">Don't have an account? <span class="hover:text-blue-600 transition duration-700">Sign up</span></span>
+      <span class="italic text-sm ml-2 cursor-pointer">Don't have an account? <span class="hover:text-blue-600 transition duration-700"><Link :href="route('user-account.create')" class="text-sm text-gray-500">
+            Sign up
+          </Link></span></span>
   </form>
   </div>
 </template>
 
 <script setup>
+import { Link } from '@inertiajs/inertia-vue3';
 import { useForm } from '@inertiajs/inertia-vue3'
 const form = useForm({
   username: null,

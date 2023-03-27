@@ -17,7 +17,7 @@ class UserAccountController extends Controller
     {
         $user = User::make($request->validate([
             'name' => 'required',
-            'username' => 'required|string',
+            'username' => 'required|string|unique:users',
             'email' => 'required|email|unique:users',
             'password' => 'required|min:8|confirmed',
             'teacher' => 'required'
