@@ -9,6 +9,10 @@ use Illuminate\Support\Facades\Auth;
 
 class CourseController extends Controller
 {
+    public function __construct()
+    {
+        $this->authorizeResource(Course::class, 'course');
+    }
     /**
      * Display a listing of the resource.
      *
