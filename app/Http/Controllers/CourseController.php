@@ -19,11 +19,6 @@ class CourseController extends Controller
      * @return \Illuminate\Http\Response
      */
 
-    /*  public function __construct()
-    {
-        $this->authorizeResource(Course::class, 'course');
-    } */
-
 
     public function index(Request $request)
     {
@@ -31,27 +26,15 @@ class CourseController extends Controller
         $filters = $request->only([
             'priceFrom', 'priceTo', 'category'
         ]);
-        $query = Course::orderByDesc('created_at');
-
-        if ($filters['priceFrom'] ?? false) {
-            $query->where('price', '>=', $filters['priceFrom']);
-        }
-
-        if ($filters['priceTo'] ?? false) {
-            $query->where('price', '<=', $filters['priceTo']);
-        }
-
-        if ($filters['category'] ?? false) {
-            $query->where('category', '==', $filters['beds']);
-        }
-
 
 
         return inertia(
             'Course/Index',
             [
                 'filters' => $filters,
-                'courses' => $query->paginate(10)
+                'courses' => Course::mostRecent()
+                    ->filter($filters)
+                    ->paginate(12)
                     ->withQueryString()
             ]
         );
@@ -68,7 +51,7 @@ class CourseController extends Controller
     }
 
     /**
-     * Store a newly created resource in storage.
+     * Store a newly created resource in storage.\Contracts
      *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
@@ -77,8 +60,8 @@ class CourseController extends Controller
     {
         $request->user()->courses()->create(
             $request->validate([
-                'Course_name' => 'required',
-                'Category' => 'required',
+                'Course_name' => 'required|string',
+                'Category' => 'required|string',
                 'Description' => 'required',
                 'Price' => 'required|integer|min:1|max:1000',
             ])

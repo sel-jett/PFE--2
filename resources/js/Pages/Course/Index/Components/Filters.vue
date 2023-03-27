@@ -15,11 +15,11 @@
       </div>
 
       <div class="flex flex-nowrap items-center">
-        <select v-model.number="filterForm.category" class="input-filter-l w-28">
+        <select v-model="filterForm.category" class="input-filter-l w-28">
           <option :value="null">Category</option>
-          <option :value="mathematics">Mathematics</option>
-          <option :value="physics">Physics</option>
-          <option :value="svt">SVT</option>
+          <option :value="Mathematics">Mathematics</option>
+          <option :value="Physics">Physics</option>
+          <option :value="SVT">SVT</option>
         </select>
       </div>
 

@@ -14,9 +14,7 @@ return new class extends Migration
     public function up()
     {
         Schema::table('courses', function (Blueprint $table) {
-            $table->tinyText('Course_name');
-            $table->longText('Description');
-            $table->unsignedInteger('Price');
+            $table->enum('category', ['Mathematics', 'Physics', 'SVT']);
         });
     }
 
@@ -27,6 +25,10 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropColumns('courses', ['Course_name', 'Description', 'Price']);
+        if (Schema::hasColumn('courses', 'category')) {
+            Schema::table('courses', function (Blueprint $table) {
+                $table->dropColumn('category');
+            });
+        }
     }
 };

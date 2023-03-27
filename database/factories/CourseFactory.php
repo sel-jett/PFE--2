@@ -19,7 +19,6 @@ class CourseFactory extends Factory
         return [
             'Course_name' => fake()->word(),
             'Description' => fake()->text(),
-            'Category' => fake()->word(),
             'Price' => fake()->numberBetween(100, 500),
         ];
     }

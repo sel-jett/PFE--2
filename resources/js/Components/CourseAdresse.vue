@@ -1,6 +1,6 @@
 <template>
   <span>
-    {{ course.Course_name }}, {{ course.Category }}, for ${{ course.Price }}
+    {{ course.Course_name }}, {{ course.category }}, for ${{ course.Price }}
   </span>
 </template>
 
