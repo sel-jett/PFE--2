@@ -12,39 +12,30 @@
 				</svg>
 			</button>
 		</div>
+
+    <!-- links -->
 		<ul class="hidden absolute top-1/2 left-1/2 transform -translate-y-1/2 -translate-x-1/2 lg:flex lg:mx-auto lg:flex lg:items-center lg:w-auto lg:space-x-6">
-			<li><Link class="text-sm text-gray-400 hover:text-gray-500" href="/">Home</Link></li>
+			<li><Link  class="text-sm text-gray-400 hover:text-gray-500" :href="route('home')" :class="{ 'text-blue-500 active': activeLink === 'home' }" @click="setActiveLink('home')">Home</Link></li>
 			<li class="text-gray-300">
 				<svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" class="w-4 h-4 current-fill" viewBox="0 0 24 24">
 					<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 5v0m0 7v0m0 7v0m0-13a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2z" />
 				</svg>
 			</li>
-			<li><Link class="text-sm text-blue-600 font-bold" href="#">About Us</Link></li>
+			<li><Link class="text-sm text-gray-400 font-bold" :href="route('about-us')" :class="{ 'text-blue-500 active': activeLink === 'about-us' }" @click="setActiveLink('about-us')">About Us</Link></li>
 			<li class="text-gray-300">
 				<svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" class="w-4 h-4 current-fill" viewBox="0 0 24 24">
 					<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 5v0m0 7v0m0 7v0m0-13a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2z" />
 				</svg>
 			</li>
-			<li><Link class="text-sm text-gray-400 hover:text-gray-500" href="#">Services</Link></li>
-			<li class="text-gray-300">
-				<svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" class="w-4 h-4 current-fill" viewBox="0 0 24 24">
-					<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 5v0m0 7v0m0 7v0m0-13a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2z" />
-				</svg>
-			</li>
-			<li><Link class="text-sm text-gray-400 hover:text-gray-500" href="#">Pricing</Link></li>
-			<li class="text-gray-300">
-				<svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" class="w-4 h-4 current-fill" viewBox="0 0 24 24">
-					<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 5v0m0 7v0m0 7v0m0-13a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2z" />
-				</svg>
-			</li>
-			<li><Link class="text-sm text-gray-400 hover:text-gray-500" href="#">Contact</Link></li>
+			<li><Link class="text-sm text-gray-400 hover:text-gray-500" :href="route('course.index')" :class="{ 'text-blue-500 active': activeLink === 'course.index' }" @click="setActiveLink('course.index')">Courses</Link></li>
 		</ul>
-		 <div v-if="teacher">
-			Good Morning
-		</div>
-		<Link class="hidden lg:inline-block lg:ml-auto lg:mr-3 py-2 px-6 bg-gray-50 hover:bg-gray-100 text-sm text-gray-900 font-bold  rounded-xl transition duration-200" :href="route('login')">Sign In</Link>
-		<Link class="hidden lg:inline-block py-2 px-6 bg-blue-500 hover:bg-blue-600 text-sm text-white font-bold rounded-xl transition duration-200" href="">Sign up</Link>
-		<Link class="hidden lg:inline-block py-2 px-6 bg-blue-500 hover:bg-blue-600 text-sm text-white font-bold rounded-xl transition duration-200" :href="route('logout')" method="delete" as="button">Logout</Link>
+      
+    <!-- sign in/up -->
+    <div v-if="user == null" class="absolute right-7 p-0 m-0">
+      <Link class="hidden lg:inline-block lg:ml-auto lg:mr-3 py-2 px-6 bg-gray-50 hover:bg-gray-100 text-sm text-gray-900 font-bold  rounded-xl transition duration-200" :href="route('login')">Sign In</Link>
+      <Link class="hidden lg:inline-block py-2 px-6 bg-blue-500 hover:bg-blue-600 text-sm text-white font-bold rounded-xl transition duration-200" href="">Sign up</Link>
+    </div>
+		<Link v-else class="hidden lg:inline-block py-2 px-6 bg-blue-500 hover:bg-blue-600 text-sm text-white font-bold rounded-xl transition duration-200" :href="route('logout')" method="delete" as="button">Logout</Link>
 	</nav>
 	<div class="navbar-menu relative z-50 hidden">
 		<div class="navbar-backdrop fixed inset-0 bg-gray-800 opacity-25"></div>
@@ -61,6 +52,8 @@
 					</svg>
 				</button>
 			</div>
+
+      <!-- burger menu -->
 			<div>
 				<ul>
 					<li class="mb-1">
@@ -90,29 +83,6 @@
 	</div>
 </body>
 <slot></slot>
-
-<!-- 
-  <footer class=" bg-white rounded-lg shadow m absolute bottom-0 w-full">
-    <div class="w-full mx-auto container md:p-6 p-4 md:flex md:items-center md:justify-between">
-      <span class="text-sm text-gray-500 sm:text-center">© 2023 <Link href="https://flowbite.com/" class="hover:text-blue-600">NAJA7I™</Link>. All Rights Reserved.
-    </span>
-    <ul class="flex flex-wrap items-center mt-3 text-sm font-medium text-gray-500 sm:mt-0">
-        <li>
-            <a href="#" class="mr-4 hover:text-blue-600 md:mr-6 ">About</a>
-        </li>
-        <li>
-            <a href="#" class="mr-4 hover:text-blue-600 md:mr-6">Privacy Policy</a>
-        </li>
-        <li>
-            <a href="#" class="mr-4 hover:text-blue-600 md:mr-6">Licensing</a>
-        </li>
-        <li>
-            <a href="#" class="hover:text-blue-600">Contact</a>
-        </li>
-    </ul>
-    </div>
-  </footer>
--->
 
 </template>
 
@@ -178,6 +148,20 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
 });
+
+export default {
+  data() {
+    return {
+      activeLink: 'home',
+    };
+  },
+  methods: {
+    setActiveLink(link) {
+      this.activeLink = link;
+    },
+  },
+};
+
 </script>
 
 
