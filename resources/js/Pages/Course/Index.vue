@@ -17,7 +17,14 @@
 <script setup>
 import {Link} from '@inertiajs/inertia-vue3'
 import CourseAdresse from '@/Components/CourseAdresse.vue';
+import MainLayout from '@/Layouts/MainLayout.vue';
 defineProps({
   courses: Array,
 })
+</script>
+
+<script>
+export default{
+  layout: MainLayout
+}
 </script>

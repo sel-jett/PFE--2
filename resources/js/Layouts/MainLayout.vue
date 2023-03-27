@@ -33,7 +33,7 @@
     <!-- sign in/up -->
     <div v-if="user == null" class="absolute right-7 p-0 m-0">
       <Link class="hidden lg:inline-block lg:ml-auto lg:mr-3 py-2 px-6 bg-gray-50 hover:bg-gray-100 text-sm text-gray-900 font-bold  rounded-xl transition duration-200" :href="route('login')">Sign In</Link>
-      <Link class="hidden lg:inline-block py-2 px-6 bg-blue-500 hover:bg-blue-600 text-sm text-white font-bold rounded-xl transition duration-200" :href="route('user-account.create')">Sign up</Link>
+      <Link :href="route('user-account.create')" class="hidden lg:inline-block py-2 px-6 bg-blue-500 hover:bg-blue-600 text-sm text-white font-bold rounded-xl transition duration-200" >Sign up</Link>
     </div>
 		<Link v-else class="hidden lg:inline-block py-2 px-6 bg-blue-500 hover:bg-blue-600 text-sm text-white font-bold rounded-xl transition duration-200" :href="route('logout')" method="delete" as="button">Logout</Link>
 	</nav>
@@ -89,6 +89,7 @@
 <script setup>
   import { computed } from 'vue'
   import { Link, usePage } from '@inertiajs/inertia-vue3'
+import MainLayout from '@/Layouts/MainLayout.vue';
   // const x = ref(0)
   // const y = computed(() => x.value * 2)
   const page = usePage()
@@ -101,8 +102,7 @@
 
   const teacher = computed(
   () => page.props.value.teacher,
-) 
-
+)
 
 </script>
 
@@ -163,5 +163,4 @@ export default {
 };
 
 </script>
-
 

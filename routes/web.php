@@ -32,7 +32,7 @@ Route::delete('logout', [AuthController::class, 'destroy'])
 Route::resource('course', CourseController::class)->only(['create', 'store', 'edit', 'update', 'destroy'])
     ->middleware('auth');
 
-Route::resource('course', CourseController::class)->except(['create', 'store', 'edit', 'update', 'destroy']);;
+Route::resource('course', CourseController::class)->except(['create', 'store', 'edit', 'update', 'destroy']);
 
 
 Route::resource('user-account', UserAccountController::class)->only(['create', 'store']);
