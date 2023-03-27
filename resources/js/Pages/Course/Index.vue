@@ -6,12 +6,6 @@
             <CourseAdresse :course="course" />
         </Link>
     </div>
-    <div>
-        <Link :href="route('course.edit',{course: course.id})" as="button">Edit</Link>
-    </div>
-    <div>
-        <Link :href="route('course.destroy',{course: course.id})" method="DELETE" as="button">Delete</Link>
-    </div>
   </div>
 <div v-if="courses.data.length" class="w-full flex justify-center mt-8 mb-8">
     <Pagination :links="courses.links" />

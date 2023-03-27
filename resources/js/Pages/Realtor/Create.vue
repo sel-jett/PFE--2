@@ -49,7 +49,7 @@ const form = useForm({
   Description: null,
   Price: 0,
 })
-const create = () => form.post(route('course.store'))
+const create = () => form.post(route('realtor.course.store'))
 </script>
 
 <style scoped>

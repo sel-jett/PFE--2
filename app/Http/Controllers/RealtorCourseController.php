@@ -10,6 +10,10 @@ use App\Models\Course;
 
 class RealtorCourseController extends Controller
 {
+    public function __construct()
+    {
+        $this->authorizeResource(Course::class, 'course');
+    }
     public function index(Request $request)
     {
         $filters = [
@@ -29,10 +33,64 @@ class RealtorCourseController extends Controller
             ]
         );
     }
-    public function __construct()
+    public function create()
     {
-        $this->authorizeResource(Course::class, 'course');
+        return inertia('Realtor/Create');
     }
+
+    /**
+     * Store a newly created resource in storage.\Contracts
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function store(Request $request)
+    {
+        $request->user()->courses()->create(
+            $request->validate([
+                'Course_name' => 'required|string',
+                'Category' => 'required|string',
+                'Description' => 'required',
+                'Price' => 'required|integer|min:1|max:1000',
+            ])
+        );
+
+        return redirect()->route('realtor.course.index')
+            ->with('success', 'course was created!');
+    }
+
+    public function edit(Course $course)
+    {
+        return inertia(
+            'Realtor/Edit',
+            [
+                'course' => $course,
+            ]
+        );
+    }
+
+    /**
+     * Update the specified resource in storage.
+     *Course
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function update(Request $request, Course $course)
+    {
+        $course->update(
+            $request->validate([
+                'Course_name' => 'required',
+                'Category' => 'required',
+                'Description' => 'required',
+                'Price' => 'required|integer|min:1|max:1000',
+            ])
+        );
+
+        return redirect()->route('realtor.course.index')
+            ->with('success', 'course was changed!');
+    }
+
 
     public function destroy(Course $course)
     {

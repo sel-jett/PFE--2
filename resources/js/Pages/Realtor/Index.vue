@@ -16,8 +16,12 @@
           <CourseAdresse :course="course" />
         </div>
         <div class="flex items-center gap-1 text-gray-600 dark:text-gray-300">
-          <Link>Preview</Link>
-          <Link>Edit</Link>
+          <a
+            class="btn-outline text-xs font-medium" 
+            :href="route('course.show', { course: course.id })"
+            target="_blank"
+          >Preview</a>
+         <Link class="btn-outline text-xs font-medium" :href="route('realtor.course.edit', { course: course.id })">Edit</Link>
           <Link
             class="btn-outline text-xs font-medium" 
             :href="route('realtor.course.destroy', { course: course.id })" 

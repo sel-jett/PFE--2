@@ -30,10 +30,8 @@ Route::post('login', [AuthController::class, 'store'])
 Route::delete('logout', [AuthController::class, 'destroy'])
     ->name('logout');
 
-Route::resource('course', CourseController::class)->only(['create', 'store', 'edit', 'update', 'destroy'])
-    ->middleware('auth');
 
-Route::resource('course', CourseController::class)->except(['create', 'store', 'edit', 'update', 'destroy']);
+Route::resource('course', CourseController::class)->only(['index', 'show']);
 
 
 Route::resource('user-account', UserAccountController::class)->only(['create', 'store']);
@@ -44,5 +42,5 @@ Route::prefix('realtor')
     ->middleware('auth')
     ->group(function () {
         Route::resource('course', RealtorCourseController::class)
-            ->only(['index', 'destroy']);
+            ->only(['index', 'destroy', 'edit', 'update', 'create', 'store']);
     });
