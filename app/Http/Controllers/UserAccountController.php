@@ -21,7 +21,6 @@ class UserAccountController extends Controller
             'email' => 'required|email|unique:users',
             'password' => 'required|min:8|confirmed',
             'teacher' => 'required'
-
         ]));
         $user->password = Hash::make($user->password);
         $user->save();
