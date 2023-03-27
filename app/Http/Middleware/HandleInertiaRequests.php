@@ -47,7 +47,8 @@ class HandleInertiaRequests extends Middleware
                 'username' => $request->user()->name,
                 'email' => $request->user()->email,
                 'teacher' => $request->user()->boolval,
-            ] : null
+            ] : null,
+            'teacher' => $request->user() && $request->user()->teacher ? true : false,
         ]);
     }
 }

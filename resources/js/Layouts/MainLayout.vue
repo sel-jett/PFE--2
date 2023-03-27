@@ -39,8 +39,12 @@
 			</li>
 			<li><Link class="text-sm text-gray-400 hover:text-gray-500" href="#">Contact</Link></li>
 		</ul>
+		 <div v-if="teacher">
+			Good Morning
+		</div>
 		<Link class="hidden lg:inline-block lg:ml-auto lg:mr-3 py-2 px-6 bg-gray-50 hover:bg-gray-100 text-sm text-gray-900 font-bold  rounded-xl transition duration-200" :href="route('login')">Sign In</Link>
 		<Link class="hidden lg:inline-block py-2 px-6 bg-blue-500 hover:bg-blue-600 text-sm text-white font-bold rounded-xl transition duration-200" href="">Sign up</Link>
+		<Link class="hidden lg:inline-block py-2 px-6 bg-blue-500 hover:bg-blue-600 text-sm text-white font-bold rounded-xl transition duration-200" :href="route('logout')" method="delete" as="button">Logout</Link>
 	</nav>
 	<div class="navbar-menu relative z-50 hidden">
 		<div class="navbar-backdrop fixed inset-0 bg-gray-800 opacity-25"></div>
@@ -120,10 +124,16 @@
   const page = usePage()
   const flashSuccess = computed(
     () => page.props.value.flash.success,
-  )
+  );
   const user = computed(
   () => page.props.value.user,
-)
+); 
+
+  const teacher = computed(
+  () => page.props.value.teacher,
+) 
+
+
 </script>
 
 
