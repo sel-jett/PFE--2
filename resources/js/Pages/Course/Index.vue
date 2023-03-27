@@ -1,5 +1,5 @@
 <template>
-  <div v-for="course in courses" :key="course.id">
+  <div v-for="course in courses.data" :key="course.id" :course="course">
     <div>
         <Link :href="route('course.show',{course: course.id})">
             <CourseAdresse :course="course" />
@@ -12,14 +12,18 @@
         <Link :href="route('course.destroy',{course: course.id})" method="DELETE" as="button">Delete</Link>
     </div>
   </div>
+<div v-if="courses.data.length" class="w-full flex justify-center mt-8 mb-8">
+    <Pagination :links="courses.links" />
+  </div>
+
 </template>
 
 <script setup>
 import {Link} from '@inertiajs/inertia-vue3'
 import CourseAdresse from '@/Components/CourseAdresse.vue';
-import MainLayout from '@/Layouts/MainLayout.vue';
+import Pagination from '@/Components/UI/Pagination.vue';
 defineProps({
-  courses: Array,
+  courses: Object,
 })
 </script>
 

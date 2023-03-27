@@ -30,7 +30,8 @@ class CourseController extends Controller
         return inertia(
             'Course/Index',
             [
-                'courses' => Course::all(),
+                'courses' => Course::orderByDesc('created_at')
+                    ->paginate(12),
             ]
         );
     }
