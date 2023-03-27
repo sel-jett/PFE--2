@@ -17,7 +17,7 @@ use App\Http\Controllers\AuthController;
 |
 */
 
-Route::get('/', [IndexController::class, 'index']);
+Route::get('/', [IndexController::class, 'index'])->name('home');
 Route::get('/hello', [IndexController::class, 'show']);
 
 Route::resource('course', CourseController::class);
