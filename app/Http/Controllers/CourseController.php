@@ -131,10 +131,4 @@ class CourseController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Course $course)
-    {
-        $course->delete();
-        return redirect()->back()
-            ->with('success', 'Course was deleted');
-    }
 }

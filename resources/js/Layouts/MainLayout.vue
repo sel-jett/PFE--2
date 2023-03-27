@@ -35,7 +35,8 @@
       <Link class="hidden lg:inline-block lg:ml-auto lg:mr-3 py-2 px-6 bg-gray-50 hover:bg-gray-100 text-sm text-gray-900 font-bold  rounded-xl transition duration-200" :href="route('login')">Sign In</Link>
       <Link :href="route('user-account.create')" class="hidden lg:inline-block py-2 px-6 bg-blue-500 hover:bg-blue-600 text-sm text-white font-bold rounded-xl transition duration-200" >Sign up</Link>
     </div>
-		<Link v-else class="hidden lg:inline-block py-2 px-6 bg-blue-500 hover:bg-blue-600 text-sm text-white font-bold rounded-xl transition duration-200" :href="route('logout')" method="delete" as="button">Logout</Link>
+		<Link v-else-if="user !== null" class="hidden lg:inline-block py-2 px-6 bg-blue-500 hover:bg-blue-600 text-sm text-white font-bold rounded-xl transition duration-200" :href="route('logout')" method="delete" as="button">Logout</Link>
+		<Link v-if="user !== null" class="text-sm text-gray-500" :href="route('realtor.course.index')">{{ user.name }}</Link>
 	</nav>
 	<div class="navbar-menu relative z-50 hidden">
 		<div class="navbar-backdrop fixed inset-0 bg-gray-800 opacity-25"></div>

@@ -6,6 +6,7 @@ use App\Http\Controllers\SigningController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\UserAccountController;
+use App\Http\Controllers\RealtorCourseController;
 
 /*
 |--------------------------------------------------------------------------
@@ -36,3 +37,12 @@ Route::resource('course', CourseController::class)->except(['create', 'store', '
 
 
 Route::resource('user-account', UserAccountController::class)->only(['create', 'store']);
+
+
+Route::prefix('realtor')
+    ->name('realtor.')
+    ->middleware('auth')
+    ->group(function () {
+        Route::resource('course', RealtorCourseController::class)
+            ->only(['index', 'destroy']);
+    });
