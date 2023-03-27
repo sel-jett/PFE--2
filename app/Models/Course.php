@@ -11,7 +11,7 @@ class Course extends Model
     use HasFactory;
 
     protected $fillable = [
-        'Course_name','Description','Category','Price'
+        'Course_name', 'Description', 'Category', 'Price'
     ];
 
     public function owner(): BelongsTo
@@ -21,5 +21,4 @@ class Course extends Model
             'by_user_id'
         );
     }
-
 }
