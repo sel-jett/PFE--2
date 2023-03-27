@@ -19,12 +19,13 @@
 				<div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
 					<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6"><path stroke-linecap="round" stroke-linejoin="round" d="M16.5 10.5V6.75a4.5 4.5 0 10-9 0v3.75m-.75 11.25h10.5a2.25 2.25 0 002.25-2.25v-6.75a2.25 2.25 0 00-2.25-2.25H6.75a2.25 2.25 0 00-2.25 2.25v6.75a2.25 2.25 0 002.25 2.25z" /></svg>
 				</div>
-        <input id="password" v-model="form.password" type="password" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5 " placeholder="***************"/>
+        <input x-data="{ show: true }" id="password" v-model="form.password" type="password" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5 " placeholder="***************"/>
+        
       </div>
       <div v-if="form.errors.password" class="input-error">{{ form.errors.password }}</div>
       
       <button type="submit" class="block w-full bg-blue-600 hover:bg-blue-400 transition duration-700 mt-4 py-2 rounded-2xl text-white font-semibold mb-2">Sign in</button>
-  
+      <span class="italic text-sm ml-2 cursor-pointer">Don't have an account? <span class="hover:text-blue-600 transition duration-700">Sign up</span></span>
   </form>
   </div>
 </template>
@@ -38,7 +39,7 @@ const form = useForm({
 const login = () => form.post(route('login.store'))
 </script>
 
-<script>
+<script> 
 	import AuthLayout from '@/Layouts/AuthLayout.vue';
 	export default{
 		layout: AuthLayout
