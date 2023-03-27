@@ -25,13 +25,34 @@ class CourseController extends Controller
     } */
 
 
-    public function index()
+    public function index(Request $request)
     {
+
+        $filters = $request->only([
+            'priceFrom', 'priceTo', 'category'
+        ]);
+        $query = Course::orderByDesc('created_at');
+
+        if ($filters['priceFrom'] ?? false) {
+            $query->where('price', '>=', $filters['priceFrom']);
+        }
+
+        if ($filters['priceTo'] ?? false) {
+            $query->where('price', '<=', $filters['priceTo']);
+        }
+
+        if ($filters['category'] ?? false) {
+            $query->where('category', '==', $filters['beds']);
+        }
+
+
+
         return inertia(
             'Course/Index',
             [
-                'courses' => Course::orderByDesc('created_at')
-                    ->paginate(12),
+                'filters' => $filters,
+                'courses' => $query->paginate(10)
+                    ->withQueryString()
             ]
         );
     }

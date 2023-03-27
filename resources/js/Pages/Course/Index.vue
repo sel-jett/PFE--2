@@ -1,4 +1,5 @@
 <template>
+  <Filters :filters="filters"/>
   <div v-for="course in courses.data" :key="course.id" :course="course">
     <div>
         <Link :href="route('course.show',{course: course.id})">
@@ -22,8 +23,10 @@
 import {Link} from '@inertiajs/inertia-vue3'
 import CourseAdresse from '@/Components/CourseAdresse.vue';
 import Pagination from '@/Components/UI/Pagination.vue';
+import Filters from '../Course/Index/Components/Filters.vue';
 defineProps({
   courses: Object,
+  filters: Object,
 })
 </script>
 
