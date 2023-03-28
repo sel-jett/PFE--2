@@ -16,8 +16,8 @@
         </select>
       </div>
 
-      <button type="submit" class="btn-normal px-6 py-2">Filter</button>
-      <button type="reset" class="text-gray-700 hover:text-red-500">Clear</button>
+      <button type="submit" class="btn-normal px-6 py-2 text-green-500 hover:text-green-800">Filter</button>
+      <button type="reset" class="text-red-500 hover:text-red-800">Clear</button>
     </div>
   </form>
 </template>
