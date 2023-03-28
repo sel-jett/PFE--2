@@ -32,7 +32,7 @@
     </div>
     <div class="border-t border-gray-100"></div>
     <div class="block px-4 py-2 text-gray-800 hover:bg-gray-100">
-      <Link :href="route('logout')" method="delete">Sign out</Link>
+      <Link :href="route('logout')" method="delete" as="button">Sign out</Link>
     </div>
   </div>
       <button data-collapse-toggle="mobile-menu-2" type="button" class="inline-flex items-center p-2 ml-1 text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600" aria-controls="mobile-menu-2" aria-expanded="false">
@@ -138,9 +138,6 @@
 <script setup>
 	import { computed } from 'vue'
 	import { Link, usePage } from '@inertiajs/inertia-vue3'
-	import MainLayout from '@/Layouts/MainLayout.vue';
-	// const x = ref(0)
-	// const y = computed(() => x.value * 2)
 	const page = usePage()
 	const flashSuccess = computed(
 		() => page.props.value.flash.success,
