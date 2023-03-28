@@ -1,7 +1,7 @@
 <template>
   <Filters :filters="filters" class="mb-8"/>
   <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
-    <div v-for="course in courses.data" :key="course.id" :course="course" class="bg-white rounded-lg shadow-md overflow-hidden">
+    <div v-for="course in courses.data" :key="course.id" :course="course" class="bg-white rounded-lg shadow-md overflow-hidden hover:scale-105 transition duration-500">
       <div class="p-4">
         <Link :href="route('course.show',{course: course.id})">
           <CourseAdresse :course="course" class="text-gray-700 font-medium hover:text-blue-600"/>
