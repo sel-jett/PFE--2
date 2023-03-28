@@ -1,21 +1,14 @@
 <template>
-  <form @submit.prevent="filter">
-    <div class="mb-8 mt-4 flex flex-wrap gap-2">
-      <div class="flex flex-nowrap items-center">
-        <input
-        v-model.number="filterForm.priceFrom"
-          type="text" placeholder="Price from"
-          class="input-filter-l w-28"
-        />
-        <input
-        v-model.number="filterForm.priceTo"
-          type="text" placeholder="Price to" 
-          class="input-filter-r w-28"
-        />
+  <form @submit.prevent="filter" class="my-8">
+    <div class="flex flex-wrap justify-center gap-2">
+      <div class="flex flex-wrap items-center bg-white rounded-lg shadow-md overflow-hidden">
+        <input v-model.number="filterForm.priceFrom" type="text" placeholder="Price from" class="input-filter-l w-52 p-4 bg-transparent border-none outline-none text-gray-700" />
+        <div class="border-r-2 border-gray-300 h-8"></div>
+        <input v-model.number="filterForm.priceTo" type="text" placeholder="Price to" class="input-filter-r w-f52 p-4 bg-transparent border-none outline-none text-gray-700" />
       </div>
 
-      <div class="flex flex-nowrap items-center">
-        <select v-model="filterForm.category" class="input-filter-l w-28">
+      <div class="relative">
+        <select v-model="filterForm.category" class="input-filter-l w-40 p-4 bg-white rounded-lg shadow-md appearance-none border-none outline-none text-gray-700">
           <option :value="null">Category</option>
           <option :value="Mathematics">Mathematics</option>
           <option :value="Physics">Physics</option>
@@ -23,12 +16,12 @@
         </select>
       </div>
 
-
-      <button type="submit" class="btn-normal">Filter</button>
-      <button type="reset">Clear</button>
+      <button type="submit" class="btn-normal px-6 py-2">Filter</button>
+      <button type="reset" class="text-gray-700 hover:text-red-500">Clear</button>
     </div>
   </form>
 </template>
+
 
 <script setup>
 import {useForm} from '@inertiajs/inertia-vue3'
