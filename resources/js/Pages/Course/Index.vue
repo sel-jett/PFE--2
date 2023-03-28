@@ -4,7 +4,7 @@
     <div v-for="course in courses.data" :key="course.id" :course="course" class="bg-white rounded-lg shadow-md overflow-hidden">
       <div class="p-4">
         <Link :href="route('course.show',{course: course.id})">
-          <CourseAdresse :course="course" class="text-gray-700 font-medium hover:text-indigo-600"/>
+          <CourseAdresse :course="course" class="text-gray-700 font-medium hover:text-blue-600"/>
         </Link>
       </div>
     </div>
