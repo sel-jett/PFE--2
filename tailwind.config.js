@@ -6,7 +6,12 @@ module.exports = {
     './resources/js/**/*.vue',
   ],
   theme: {
-    extend: {},
+    extend: {
+      spacing: {
+        '112': '35rem',
+        '115': '50rem'
+      }
+    },
   },
   plugins: [
     require('@tailwindcss/forms'),
