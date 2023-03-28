@@ -23,6 +23,13 @@ class DatabaseSeeder extends Seeder
             'teacher' => 1,
             'is_admin' => 1,
         ]);
+        \App\Models\User::factory(1)->create([
+            'name' => 'halas',
+            'username' => 'halas',
+            'email' => 'tes3t@example.com',
+            'teacher' => 1,
+            'is_admin' => 1,
+        ]);
 
         \App\Models\User::factory(1)->create([
             'name' => 'Ayoub Boudiba',
