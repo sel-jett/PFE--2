@@ -55,6 +55,7 @@
   </div>
   </div>
 </nav>
+<slot>default</slot>
 
 </template>
 
