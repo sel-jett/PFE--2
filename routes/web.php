@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\UserAccountController;
 use App\Http\Controllers\RealtorCourseController;
+use App\Http\Controllers\RealtorCourseImageController;
 
 /*
 |--------------------------------------------------------------------------
@@ -43,4 +44,6 @@ Route::prefix('realtor')
     ->group(function () {
         Route::resource('course', RealtorCourseController::class)
             ->only(['index', 'destroy', 'edit', 'update', 'create', 'store']);
+        Route::resource('course.image', RealtorCourseImageController::class)
+            ->only(['create', 'store']);
     });

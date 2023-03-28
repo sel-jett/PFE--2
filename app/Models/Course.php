@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Course extends Model
 {
@@ -27,6 +28,12 @@ class Course extends Model
             'by_user_id'
         );
     }
+
+    public function images(): HasMany
+    {
+        return $this->hasMany(CourseImage::class);
+    }
+
     public function scopeMostRecent(Builder $query): Builder
     {
         return $this->orderByDesc('created_at');
