@@ -34,6 +34,11 @@ class Course extends Model
         return $this->hasMany(CourseImage::class);
     }
 
+    public function offers(): HasMany
+    {
+        return $this->hasMany(Offer::class, 'course_id');
+    }
+
     public function scopeMostRecent(Builder $query): Builder
     {
         return $this->orderByDesc('created_at');

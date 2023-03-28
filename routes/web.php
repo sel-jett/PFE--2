@@ -8,6 +8,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\UserAccountController;
 use App\Http\Controllers\RealtorCourseController;
 use App\Http\Controllers\RealtorCourseImageController;
+use App\Http\Controllers\CourseOfferController;
 
 /*
 |--------------------------------------------------------------------------
@@ -22,6 +23,10 @@ use App\Http\Controllers\RealtorCourseImageController;
 
 Route::get('/', [IndexController::class, 'index'])->name('home');
 Route::get('About-us', [IndexController::class, 'show'])->name('about-us');
+
+Route::resource('course.offer', CourseOfferController::class)
+    ->middleware('auth')
+    ->only(['store']);
 
 
 Route::get('login', [AuthController::class, 'create'])
@@ -45,5 +50,5 @@ Route::prefix('realtor')
         Route::resource('course', RealtorCourseController::class)
             ->only(['index', 'destroy', 'edit', 'update', 'create', 'store']);
         Route::resource('course.image', RealtorCourseImageController::class)
-            ->only(['create', 'store']);
+            ->only(['create', 'store', 'destroy']);
     });

@@ -6,18 +6,19 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
-class CourseImage extends Model
+class Offer extends Model
 {
     use HasFactory;
-    protected $fillable = ['filename'];
-    protected $appends = ['src'];
+
+    protected $fillable = ['amount', 'accepted_at', 'rejected_at'];
 
     public function course(): BelongsTo
     {
-        return $this->belongsTo(Course::class);
+        return $this->belongsTo(Course::class, 'course_id');
     }
-    public function getSrcAttribute()
+
+    public function bidder(): BelongsTo
     {
-        return asset("storage/{$this->filename}");
+        return $this->belongsTo(User::class, 'bidder_id');
     }
 }
