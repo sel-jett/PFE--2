@@ -8,7 +8,7 @@
           :src="image.src"
         />
       </div>
-      <div v-else class="w-full text-center font-medium text-gray-500">No images</div>
+     <EmptyState v-else class="md:col-span-7 flex items-center">No images</EmptyState>
     </div>
     <div>
       <CourseAdresse :course="course" />
@@ -30,6 +30,7 @@ import Box from '@/Components/UI/Box.vue'
 import { usePage } from '@inertiajs/inertia-vue3'
 import { computed } from 'vue'
 import OfferMade from './Show/Components/OfferMade.vue'
+import EmptyState from '@/Components/UI/EmptyState.vue'
 defineProps({
   course: Object,
   offerMade: Object,

@@ -10,7 +10,8 @@ use App\Http\Controllers\RealtorCourseController;
 use App\Http\Controllers\RealtorCourseImageController;
 use App\Http\Controllers\CourseOfferController;
 use App\Http\Controllers\RealtorCourseAcceptOfferController;
-
+use App\Http\Controllers\NotificationController;
+use App\Http\Controllers\NotificationSeenController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -37,6 +38,9 @@ Route::post('login', [AuthController::class, 'store'])
 Route::delete('logout', [AuthController::class, 'destroy'])
     ->name('logout');
 
+Route::resource('notification', NotificationController::class)
+    ->middleware('auth')
+    ->only(['index']);
 
 Route::resource('course', CourseController::class)->only(['index', 'show']);
 
@@ -49,6 +53,11 @@ Route::name('offer.accept')
         'offer/{offer}/accept',
         RealtorCourseAcceptOfferController::class
     );
+
+Route::put(
+    'notification/{notification}/seen',
+    NotificationSeenController::class
+)->middleware('auth')->name('notification.seen');
 
 Route::prefix('realtor')
     ->name('realtor.')

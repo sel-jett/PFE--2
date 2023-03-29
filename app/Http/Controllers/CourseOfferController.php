@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Offer;
 use App\Models\Course;
 use Illuminate\Http\Request;
+use App\Notifications\OfferMade;
 
 class CourseOfferController extends Controller
 {
@@ -12,12 +13,15 @@ class CourseOfferController extends Controller
     {
         $this->authorize('view', $course);
 
-        $course->offers()->save(
+        $offer = $course->offers()->save(
             Offer::make(
                 $request->validate([
                     'amount' => 'required|integer|min:1|max:2000'
                 ])
             )->bidder()->associate($request->user())
+        );
+        $course->owner->notify(
+            new OfferMade($offer)
         );
 
         return redirect()->route('realtor.course.index')->with(

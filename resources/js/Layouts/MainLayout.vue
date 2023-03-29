@@ -30,6 +30,19 @@
     <div class="block px-4 py-2 text-gray-800 hover:bg-gray-100">
       <Link href="#">Settings</Link>
     </div>
+    <div>
+    <div class="block px-4 py-2 text-gray-800 hover:bg-gray-100">
+      <Link
+            class="text-gray-500 relative pr-2 py-2 text-lg"
+            :href="route('notification.index')"
+          >
+            🔔
+            <div v-if="notificationCount" class="absolute right-23 top-28 w-5 h-5 bg-red-700 dark:bg-red-400 text-white font-medium border border-white dark:border-gray-900 rounded-full text-xs text-center">
+              {{ notificationCount }}
+            </div>
+            </Link>
+          </div>
+        </div>
     <div class="border-t border-gray-100"></div>
     <div class="block px-4 py-2 text-gray-800 hover:bg-gray-100">
       <Link :href="route('logout')" method="delete" as="button">Sign out</Link>
@@ -148,6 +161,9 @@
 	const teacher = computed(
 	() => page.props.value.teacher,
 	)
+  const notificationCount = computed(
+  () => Math.min(page.props.value.user.notificationCount, 9),
+)
 </script>
 
 <script>
