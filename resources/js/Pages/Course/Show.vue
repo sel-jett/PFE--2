@@ -15,10 +15,11 @@
     </div>
   </Box>
   <MakeOffer 
-        v-if="user"
+        v-if="user && !offerMade"
         :course-id="course.id" 
         :course="course"
       />
+      <OfferMade v-if="user && offerMade" :offer="offerMade" />
   </div>
 </template>
 
@@ -28,8 +29,10 @@ import MakeOffer from '@/Pages/Course/Show/Components/MakeOffer.vue'
 import Box from '@/Components/UI/Box.vue'
 import { usePage } from '@inertiajs/inertia-vue3'
 import { computed } from 'vue'
+import OfferMade from './Show/Components/OfferMade.vue'
 defineProps({
   course: Object,
+  offerMade: Object,
 })
 const page = usePage()
 const user = computed(

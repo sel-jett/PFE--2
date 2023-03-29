@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Course;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class CourseController extends Controller
 {
@@ -55,10 +56,13 @@ class CourseController extends Controller
     {
 
         $course->load(['images']);
+        $offer = !Auth::user() ?
+            null : $course->offers()->byMe()->first();
         return inertia(
             'Course/Show',
             [
                 'course' => $course,
+                'offerMade' => $offer
             ]
         );
     }
