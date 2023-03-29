@@ -51,7 +51,7 @@ const makeOffer = () => form.post(
   },
 )
 
-const difference = computed(() => form.amount - props.price)
+const difference = computed(() => parseInt(form.amount) - parseInt(props.price))
 const min = 100
 const max = 500
 

@@ -33,6 +33,7 @@ class CourseController extends Controller
                 'filters' => $filters,
                 'courses' => Course::mostRecent()
                     ->filter($filters)
+                    ->withoutSold()
                     ->paginate(12)
                     ->withQueryString()
             ]

@@ -9,6 +9,7 @@ use App\Http\Controllers\UserAccountController;
 use App\Http\Controllers\RealtorCourseController;
 use App\Http\Controllers\RealtorCourseImageController;
 use App\Http\Controllers\CourseOfferController;
+use App\Http\Controllers\RealtorCourseAcceptOfferController;
 
 /*
 |--------------------------------------------------------------------------
@@ -42,6 +43,12 @@ Route::resource('course', CourseController::class)->only(['index', 'show']);
 
 Route::resource('user-account', UserAccountController::class)->only(['create', 'store']);
 
+
+Route::name('offer.accept')
+    ->put(
+        'offer/{offer}/accept',
+        RealtorCourseAcceptOfferController::class
+    );
 
 Route::prefix('realtor')
     ->name('realtor.')

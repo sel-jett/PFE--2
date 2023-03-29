@@ -31,6 +31,12 @@
             <div class="flex flex-col gap-1">
               <div class="text-sm text-gray-600 dark:text-gray-900">{{ course.category }}</div>
               <CourseAdresse :course="course" class="text-sm text-gray-600 dark:text-gray-900"/>
+              <div
+            v-if="course.sold_at != null" 
+            class="text-xs font-bold uppercase border border-dashed p-1 border-green-300 text-green-500 dark:border-green-600 dark:text-green-600 inline-block rounded-md mb-2"
+          >
+            sold
+          </div>
             </div>
             <div class="text-2xl font-medium">{{ course.Price }}$</div>
           </div>

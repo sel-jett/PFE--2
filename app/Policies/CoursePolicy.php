@@ -37,7 +37,11 @@ class CoursePolicy
      */
     public function view(?User $user, Course $course)
     {
-        return true;
+        if ($course->by_user_id === $user?->id) {
+            return true;
+        }
+
+        return $course->sold_at === null;
     }
 
     /**
@@ -60,7 +64,8 @@ class CoursePolicy
      */
     public function update(User $user, Course $course)
     {
-        return $user->id === $course->by_user_id;
+        return $course->sold_at === null
+            && ($user->id === $course->by_user_id);
     }
 
     /**

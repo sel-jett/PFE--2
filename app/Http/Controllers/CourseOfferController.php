@@ -10,6 +10,8 @@ class CourseOfferController extends Controller
 {
     public function store(Course $course, Request $request)
     {
+        $this->authorize('view', $course);
+
         $course->offers()->save(
             Offer::make(
                 $request->validate([

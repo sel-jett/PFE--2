@@ -43,6 +43,10 @@ class Course extends Model
     {
         return $this->orderByDesc('created_at');
     }
+    public function scopeWithoutSold(Builder $query): Builder
+    {
+        return $query->whereNull('sold_at');
+    }
 
     public function scopeFilter(Builder $query, array $filters): Builder
     {

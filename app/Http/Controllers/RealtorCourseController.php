@@ -40,7 +40,7 @@ class RealtorCourseController extends Controller
     {
         return inertia(
             'Realtor/Show',
-            ['course' => $course->load('offers')]
+            ['course' => $course->load('offers', 'offers.bidder')]
         );
     }
 
