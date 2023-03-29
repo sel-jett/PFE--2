@@ -28,11 +28,22 @@ class RealtorCourseController extends Controller
                     ->courses()
                     //->mostRecent()
                     ->filter($filters)
+                    ->withCount('images')
+                    ->withCount('offers')
                     ->paginate(5)
                     ->withQueryString()
             ]
         );
     }
+
+    public function show(Course $course)
+    {
+        return inertia(
+            'Realtor/Show',
+            ['course' => $course->load('offers')]
+        );
+    }
+
     public function create()
     {
         return inertia('Realtor/Create');

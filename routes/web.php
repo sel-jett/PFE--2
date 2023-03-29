@@ -48,7 +48,7 @@ Route::prefix('realtor')
     ->middleware('auth')
     ->group(function () {
         Route::resource('course', RealtorCourseController::class)
-            ->only(['index', 'destroy', 'edit', 'update', 'create', 'store']);
+            ->only(['index', 'destroy', 'edit', 'update', 'create', 'store', 'show']);
         Route::resource('course.image', RealtorCourseImageController::class)
             ->only(['create', 'store', 'destroy']);
     });

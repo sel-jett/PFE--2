@@ -21,7 +21,7 @@
       <div>Difference</div>
       <div>
         <div>
-          {{ props.course.price }}
+          {{ difference }}
         </div>
       </div>
     </div>
@@ -34,11 +34,11 @@ import { useForm } from '@inertiajs/inertia-vue3'
 import { computed, watch } from 'vue'
 import { debounce } from 'lodash'
 const props = defineProps({
-  listingId: Number,
-  course: Object,
+  courseId: Number,
+  price: Number,
 })
 const form = useForm({
-  amount: props.course.price,
+  amount: props.price,
 })
 
 const makeOffer = () => form.post(
@@ -51,7 +51,7 @@ const makeOffer = () => form.post(
   },
 )
 
-const difference = computed(() => form.amount - props.course.price)
+const difference = computed(() => form.amount - props.price)
 const min = 100
 const max = 500
 
