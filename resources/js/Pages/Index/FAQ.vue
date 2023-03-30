@@ -1,8 +1,8 @@
 <template>
     <h1 class="text-3xl font-semibold my-8 text-center dark:text-white">Why <span class="text-blue-600">N</span>AJA7I?</h1>
-    <div class="w-1/2 m-auto pt-1">
+    <div class="w-1/2 m-auto pt-1 mb-4">
         <Accordion title="What kinds of courses do you offer?">
-            We offer a wide range of courses covering various topics, such as programming, business, marketing, design, and more. You can browse our catalog to find the courses that interest you the most.
+            We offer a wide range of courses covering various topics, such as Philosphy, life and earth Sciences, Maths, Physics, and more. You can browse our <Link class="text-blue-600" :href="route('course.index')">catalog</Link> to find the courses that interest you the most.
         </Accordion>
         <Accordion title="Who are the instructors teaching the courses?">
             Our courses are taught by experienced instructors with real-world knowledge and expertise in their respective fields. They are selected through a rigorous screening process to ensure that you receive the highest quality instruction.
@@ -30,6 +30,10 @@
         </Accordion>
     </div>
   </template>
+
+  <script setup> 
+        import { Link } from '@inertiajs/inertia-vue3';
+    </script>
   
   <script>
   import Accordion from './components/Accordion.vue'
@@ -40,11 +44,4 @@
     }
   }
   </script>
-  
-  <style>
-  #app {
-    font-family: Avenir, Helvetica, Arial, sans-serif;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-  }
-  </style>
+ 
