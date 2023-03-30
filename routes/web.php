@@ -12,6 +12,10 @@ use App\Http\Controllers\CourseOfferController;
 use App\Http\Controllers\RealtorCourseAcceptOfferController;
 use App\Http\Controllers\NotificationController;
 use App\Http\Controllers\NotificationSeenController;
+use Illuminate\Foundation\Auth\EmailVerificationRequest;
+use Illuminate\Http\Request;
+use App\Models\User;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -55,6 +59,21 @@ Route::name('offer.accept')
         RealtorCourseAcceptOfferController::class
     );
 
+Route::get('/email/verify', function () {
+    return inertia('Auth/VerifyEmail');
+})->middleware('auth')->name('verification.notice');
+
+
+Route::get('/email/verify/{id}/{hash}', function (EmailVerificationRequest $request) {
+    $request->fulfill();
+    return redirect()->route('course.index')->with('success', 'Email was verified');
+})->middleware(['auth', 'signed'])->name('verification.verify');
+
+Route::post('/email/verification-notification', function (Request $request) {
+    $request->user()->sendEmailVerificationNotification();
+
+    return back()->with('success', 'Verification link sent!');
+})->middleware(['auth', 'throttle:6,1'])->name('verification.send');
 Route::put(
     'notification/{notification}/seen',
     NotificationSeenController::class
@@ -62,7 +81,7 @@ Route::put(
 
 Route::prefix('realtor')
     ->name('realtor.')
-    ->middleware('auth')
+    ->middleware(['auth', 'verified'])
     ->group(function () {
         Route::resource('course', RealtorCourseController::class)
             ->only(['index', 'destroy', 'edit', 'update', 'create', 'store', 'show']);

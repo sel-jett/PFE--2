@@ -29,7 +29,7 @@ class OfferMade extends Notification
      */
     public function via($notifiable)
     {
-        return ['database'];
+        return ['database', 'mail'];
     }
 
     /**
@@ -41,8 +41,11 @@ class OfferMade extends Notification
     public function toMail($notifiable)
     {
         return (new MailMessage)
-            ->line('The introduction to the notification.')
-            ->action('Notification Action', url('/'))
+            ->line("New offer ({$this->offer->amount}) was made for your listing")
+            ->action(
+                'See Your Course',
+                route('realtor.course.show', ['course' => $this->offer->course_id])
+            )
             ->line('Thank you for using our application!');
     }
 
