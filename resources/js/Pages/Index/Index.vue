@@ -67,7 +67,7 @@
         <h1 class="text-xl font-bold leading-none tracking-tight text-gray-900 md:text-2xl lg:text-4xl dark:text-white"><span class="text-blue-600 dark:text-blue-500">NAJA7I</span> is trsted by the best online teachers.</h1>
         <div class="flex justify-center">
             <div class="mx-4 text-center my-8 w-64 max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:text-white dark:border-gray-700 hover:scale-105 transitio duration-500">
-                <img class="m-auto p-2 w-52 rounded-t-lg" src="@/../images/Noureddine.png" alt="product image" />
+                <img class="m-auto p-2 w-52 rounded-t-lg" src="@/../images/aderdour.png" alt="product image" />
                 <h1 class="font-semibold text-xl">Aderdour Mustapha</h1>
                 <h2 class="text-gray-600 dark:text-gray-400">Mathematics</h2>
                 <Link :href="route('course.index')" type="button" class=" my-3 text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-3 py-2 text-center  dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 transition duration-500">Explore</Link>
