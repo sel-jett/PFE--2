@@ -21,4 +21,7 @@ class IndexController extends Controller
     {
         return inertia('Index/About');
     }
+    public function faq(){
+        return inertia('Index/FAQ');
+    }
 }
