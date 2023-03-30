@@ -73,7 +73,7 @@
   <div class="z-50 absolute right-20 top-12 w-48 mt-2 py-2 bg-white rounded-md shadow-lg" v-if="showNotifications">
     <div class="italic block px-4 py-2 text-gray-400 ">
 
-      <p>{{ user }}</p>
+      <p>{{ user.id }}</p>
     </div>
   </div>
   <!-- link -->
@@ -103,22 +103,11 @@
     <div class="mx-auto w-full container p-4 sm:p-6">
         <div class="md:flex md:justify-between">
           <div class="mb-6 md:mb-0">
-			<Link :href="route('home')" class="flex items-center">
+			    <Link :href="route('home')" class="flex items-center">
       			<span class="self-center text-xl font-semibold whitespace-nowrap dark:text-white"><span class="text-blue-600">N</span>AJA7I</span>
-  			</Link>
+  			  </Link>
           </div>
-          <div class="grid grid-cols-2 gap-8 sm:gap-6 sm:grid-cols-3">
-              <div>
-                  <h2 class="mb-6 text-sm font-semibold text-gray-900 uppercase dark:text-white">Resources</h2>
-                  <ul class="text-gray-600 dark:text-gray-400 font-medium">
-                      <li class="mb-4">
-                          <a href="https://flowbite.com/" class="hover:underline">Flowbite</a>
-                      </li>
-                      <li>
-                          <a href="https://tailwindcss.com/" class="hover:underline">Tailwind CSS</a>
-                      </li>
-                  </ul>
-              </div>
+          <div class="grid grid-cols-2 gap-8 sm:gap-6 sm:grid-cols-2">
               <div>
                   <h2 class="mb-6 text-sm font-semibold text-gray-900 uppercase dark:text-white">Follow us</h2>
                   <ul class="text-gray-600 dark:text-gray-400 font-medium">
@@ -145,7 +134,7 @@
       </div>
       <hr class="my-6 border-gray-200 sm:mx-auto dark:border-gray-700 lg:my-8" />
       <div class="sm:flex sm:items-center sm:justify-between">
-          <span class="text-sm text-gray-500 sm:text-center dark:text-gray-400">© 2023 <a href="https://flowbite.com/" class="hover:underline">NAJA7I™</a>. All Rights Reserved.
+          <span class="text-sm text-gray-500 sm:text-center dark:text-gray-400">© 2023 <Link :href="route('home')" class="hover:underline">NAJA7I™</Link>. All Rights Reserved.
           </span>
           <div class="flex mt-4 space-x-6 sm:justify-center sm:mt-0">
               <a href="#" class="text-gray-500 hover:text-gray-900 dark:hover:text-white">
@@ -220,7 +209,7 @@ export default {
     computedImageUrl() {
       const imageName = "logo.jpg";
       const baseUrl = "https://robohash.org/";
-      return `${baseUrl}{{user.id}}`;
+      return `${baseUrl}{user.id}`;
     },
   },
 };
