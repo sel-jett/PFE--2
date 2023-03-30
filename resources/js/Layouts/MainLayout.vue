@@ -10,7 +10,7 @@
 	<Link :href="route('user-account.create')" type="button" class=" mx-1 text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-3 md:mr-0 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 transition duration-500">Sign up</Link>
   </div>
   <div class="relative flex items-center md:order-2" v-else >
-    <div class="block px-4 py-2 text-gray-800 cursor-pointer" @click="showNotifications = !showNotifications">
+    <div class="block px-4 py-2 dark:text-gray-800 cursor-pointer" @click="showNotifications = !showNotifications">
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-7 h-7 dark:text-white">
         <path stroke-linecap="round" stroke-linejoin="round" d="M14.857 17.082a23.848 23.848 0 005.454-1.31A8.967 8.967 0 0118 9.75v-.7V9A6 6 0 006 9v.75a8.967 8.967 0 01-2.312 6.022c1.733.64 3.56 1.085 5.455 1.31m5.714 0a24.255 24.255 0 01-5.714 0m5.714 0a3 3 0 11-5.714 0" />
       </svg>
