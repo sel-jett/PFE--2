@@ -24,7 +24,6 @@
         "@inertiajs/inertia-vue3": "^0.6.0",
         "@inertiajs/progress": "^0.2.7",
         "@vueuse/core": "^9.13.0",
-        "flowbite": "^1.6.4",
-        "flowbite-vue": "^0.0.10"
+        "flowbite": "^1.6.4"
     }
 }
