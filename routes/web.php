@@ -25,6 +25,7 @@ use App\Http\Controllers\NotificationSeenController;
 
 Route::get('/', [IndexController::class, 'index'])->name('home');
 Route::get('About-us', [IndexController::class, 'show'])->name('about-us');
+Route::get('faq', [IndexController::class, 'faq'])->name('faq');
 
 Route::resource('course.offer', CourseOfferController::class)
     ->middleware('auth')
