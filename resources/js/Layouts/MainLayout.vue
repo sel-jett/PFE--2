@@ -5,11 +5,20 @@
   <Link :href="route('home')" class="flex items-center">
       <span class="self-center text-xl font-semibold whitespace-nowrap dark:text-white"><span class="text-blue-600">N</span>AJA7I</span>
   </Link>
+  
   <div class="relative flex items-center md:order-2" v-if="user == null">
 	<Link :href="route('login')" type="button" class="text-blue-700 bg-gray-100 hover:bg-gray-200 hover:text-blue-700 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-3 md:mr-0 dark:bg-white dark:hover:bg-gray-300 dark:text-blue-700 dark:hover:text-blue-700r dark:focus:ring-blue-800 transition duration-500">Sign in</Link>
 	<Link :href="route('user-account.create')" type="button" class=" mx-1 text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-3 md:mr-0 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 transition duration-500">Sign up</Link>
   </div>
   <div class="relative flex items-center md:order-2" v-else >
+    <button @click="toggleDark()">
+    <svg v-if="isDark" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6 text-white">
+      <path stroke-linecap="round" stroke-linejoin="round" d="M12 3v2.25m6.364.386l-1.591 1.591M21 12h-2.25m-.386 6.364l-1.591-1.591M12 18.75V21m-4.773-4.227l-1.591 1.591M5.25 12H3m4.227-4.773L5.636 5.636M15.75 12a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0z" />
+    </svg>
+    <svg v-else xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+      <path stroke-linecap="round" stroke-linejoin="round" d="M21.752 15.002A9.718 9.718 0 0118 15.75c-5.385 0-9.75-4.365-9.75-9.75 0-1.33.266-2.597.748-3.752A9.753 9.753 0 003 11.25C3 16.635 7.365 21 12.75 21a9.753 9.753 0 009.002-5.998z" />
+    </svg>
+  </button>
     <div class="block px-4 py-2 dark:text-gray-800 cursor-pointer" @click="showNotifications = !showNotifications">
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-7 h-7 dark:text-white">
         <path stroke-linecap="round" stroke-linejoin="round" d="M14.857 17.082a23.848 23.848 0 005.454-1.31A8.967 8.967 0 0118 9.75v-.7V9A6 6 0 006 9v.75a8.967 8.967 0 01-2.312 6.022c1.733.64 3.56 1.085 5.455 1.31m5.714 0a24.255 24.255 0 01-5.714 0m5.714 0a3 3 0 11-5.714 0" />
@@ -160,6 +169,10 @@
 <script setup>
 	import { computed } from 'vue'
 	import { Link, usePage } from '@inertiajs/inertia-vue3'
+  import { useDark, useToggle} from '@vueuse/core' 
+  const isDark = useDark();
+  const toggleDark = useToggle(isDark);
+
 	const page = usePage()
 	const flashSuccess = computed(
 		() => page.props.value.flash.success,
@@ -173,6 +186,7 @@
   const notificationCount = computed(
   () => Math.min(page.props.value.user.notificationCount, 9),
 )
+
 </script>
 
 <script>
