@@ -14,7 +14,7 @@ return new class extends Migration
     public function up()
     {
         Schema::table('courses', function (Blueprint $table) {
-            $table->tinyText('Course_name');
+            $table->longText('Course_name');
             $table->longText('Description');
             $table->unsignedInteger('Price');
         });
