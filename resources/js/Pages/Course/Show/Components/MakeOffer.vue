@@ -8,9 +8,8 @@
           v-model.number="form.amount"
           type="range" :min="min"
           :max="max" step="10"
-          class="mt-2 w-1/6 h-4 bg-gray-200 rounded-lg appearance-none cursor-pointer dark:bg-gray-700"
+          class="mt-2 w-full h-4 bg-gray-200 rounded-lg appearance-none cursor-pointer dark:bg-gray-700"
         />
-
         <button type="submit" class="btn-outline w-full mt-2 text-sm">
           Make an Offer
         </button>
@@ -21,7 +20,7 @@
       <div>Difference</div>
       <div>
         <div>
-          {{ difference }}
+          {{ course.Price }}
         </div>
       </div>
     </div>
@@ -36,6 +35,7 @@ import { debounce } from 'lodash'
 const props = defineProps({
   courseId: Number,
   price: Number,
+  course: Object
 })
 const form = useForm({
   amount: props.price,
@@ -53,7 +53,7 @@ const makeOffer = () => form.post(
 
 const difference = computed(() => parseInt(form.amount) - parseInt(props.price))
 const min = 100
-const max = 500
+const max = props.course.Price
 
 const emit = defineEmits(['offerUpdated'])
 watch(
