@@ -49,6 +49,7 @@
         :course="course"
       />
       <OfferMade v-if="user && offerMade" :offer="offerMade" />
+    <Payments :course="course" />
   </div>
   </div>
 </template>
@@ -61,6 +62,7 @@ import { usePage } from '@inertiajs/inertia-vue3'
 import { computed } from 'vue'
 import OfferMade from './Show/Components/OfferMade.vue'
 import EmptyState from '@/Components/UI/EmptyState.vue'
+import Payments from './Show/Payments.vue';
 defineProps({
   course: Object,
   offerMade: Object,

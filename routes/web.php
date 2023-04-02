@@ -69,3 +69,4 @@ Route::prefix('realtor')
         Route::resource('course.image', RealtorCourseImageController::class)
             ->only(['create', 'store', 'destroy']);
     });
+

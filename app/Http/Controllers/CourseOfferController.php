@@ -29,4 +29,9 @@ class CourseOfferController extends Controller
             'Offer was made!'
         );
     }
+
+    public function pay()
+    {
+        return inertia('Course/Show/Payments');
+    }
 }
