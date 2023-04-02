@@ -37,7 +37,7 @@
     </div>
   <button type="button" class="flex mr-3 text-sm bg-gray-800 rounded-full md:mr-0 focus:ring-4 focus:ring-blue-600 dark:focus:ring-blue-600" @click="showDropdown = !showDropdown">
     <span class="sr-only">Open user menu</span>
-    <img class="w-8 h-8 rounded-full" :src="computedImageUrl" alt="user photo">
+    <img class="w-8 h-8 rounded-full" :src="`https://robohash.org/${user.id}`" alt="user photo">
   </button>
   
   <!-- Dropdown menu -->
@@ -96,7 +96,12 @@
   </div>
   </div>
 </nav>
-<slot>default</slot>
+<main class="container mx-auto p-4 w-full">
+    <div v-if="flashSuccess" class="mb-4 border rounded-md shadow-sm border-green-200 dark:border-green-800 bg-green-50 dark:bg-green-900 p-2">
+      {{ flashSuccess }}
+    </div>
+    <slot>Default</slot>
+  </main>
 
 <!-- footer -->
 <footer class="bg-gray-100 dark:bg-gray-900">
@@ -209,7 +214,7 @@ export default {
     computedImageUrl() {
       const imageName = "logo.jpg";
       const baseUrl = "https://robohash.org/";
-      return `${baseUrl}{user.id}`;
+      return "`${baseUrl}{user.id}`";
     },
   },
 };
