@@ -70,25 +70,38 @@
     </button>
   </div>
   <!-- notification menu -->
-  <div class="z-50 absolute right-20 top-12 w-48 mt-2 py-2 bg-white rounded-md shadow-lg" v-if="showNotifications">
-    <div class="italic block px-4 py-2 text-gray-400 ">
-
-      <p>{{ user.id }}</p>
+  <div class="z-50 absolute right-20 top-12 w-48 mt-2  bg-white rounded-md shadow-lg" v-if="showNotifications">
+    <div v-for="notification in notifications.data" :key="notification.id" class="block text-gray-800" >
+      <div class=" hover:bg-gray-200 transition px-2 duration-300 border-b-2 border-gray-600">
+        <Link :href="route('notification.index')" v-if="notification.type === 'App\\Notifications\\OfferMade'"  >
+            <div class="flex justify-between ">
+                <span class=" font-bold">
+                  Offer
+                </span>
+                <span>
+                  {{ notification.data.amount }}<span class="text-green-700">MAD</span>
+                </span>
+              </div>
+              <span class="text-gray-600 italic">
+                new offer was made!
+              </span>
+            </Link>
+          </div>  
     </div>
   </div>
   <!-- link -->
   <div class="items-center justify-between hidden w-full md:flex md:w-auto md:order-1" id="mobile-menu-2">
     <ul class="flex flex-col p-4 mt-4 border border-gray-100 rounded-lg bg-gray-50 md:flex-row md:space-x-8 md:mt-0 md:text-sm md:font-medium md:border-0 md:bg-white dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700">
-  <li :class="{ 'text-blue-500': activeLink === 'home' }">
-    <Link :href="route('home')" class="block py-2 pl-3 pr-4 text-gray-700 bg-blue-700 rounded md:bg-transparent md:p-0 hover:text-blue-700 dark:text-white" aria-current="page" @click="setActiveLink('home')">Home</Link>
+  <li >
+    <Link :href="route('home')" class="block py-2 pl-3 pr-4 text-gray-700 bg-blue-700 rounded md:bg-transparent md:p-0 hover:text-blue-700 dark:text-white" aria-current="page" :class="{ 'text-blue-500': activeLink === 'home' }" @click="setActiveLink('home')">Home</Link>
   </li>
-  <li :class="{ 'text-blue-500': activeLink === 'about-us' }">
-    <Link :href="route('about-us')" class="block py-2 pl-3 pr-4 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 dark:text-gray-400 md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700" @click="setActiveLink('about-us')">About us</Link>
+  <li >
+    <Link :href="route('about-us')" class="block py-2 pl-3 pr-4 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 dark:text-gray-400 md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700" @click="setActiveLink('about-us')" :class="{ 'text-blue-500': activeLink === 'about-us' }">About us</Link>
   </li>
-  <li :class="{ 'text-blue-500': activeLink === 'course.index' }">
-    <Link :href="route('course.index')" class="block py-2 pl-3 pr-4 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 dark:text-gray-400 md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700" @click="setActiveLink('course.index')">Courses</Link>
+  <li >
+    <Link :href="route('course.index')" class="block py-2 pl-3 pr-4 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 dark:text-gray-400 md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700" @click="setActiveLink('course.index')" :class="{ 'text-blue-500': activeLink === 'course.index' }">Courses</Link>
   </li>
-  <li :class="{ 'text-blue-500': activeLink === 'course.index' }">
+  <li >
     <Link :href="route('faq')" class="block py-2 pl-3 pr-4 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 dark:text-gray-400 md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700" @click="setActiveLink('faq')">FAQ</Link>
   </li>
 </ul>
@@ -177,6 +190,9 @@
   const toggleDark = useToggle(isDark);
 
 	const page = usePage()
+  defineProps({
+    notifications: Object,
+  })
 	const flashSuccess = computed(
 		() => page.props.value.flash.success,
 	);
@@ -186,9 +202,9 @@
 	const teacher = computed(
 	() => page.props.value.teacher,
 	)
-  const notifications = computed (
-  () => page.props.value.notifications,
-  )
+  // const notifications = computed (
+  // () => page.props.value.notifications,
+  // )
   
   const notificationCount = computed(
   () => Math.min(page.props.value.user.notificationCount, 9),
@@ -202,7 +218,7 @@ export default {
     return {
       showDropdown: false,
       showNotifications: false,
-	    activeLink: 'about-us',
+	    activeLink: 'home',
     };
   },
   methods: {
