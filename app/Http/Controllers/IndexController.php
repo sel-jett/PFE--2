@@ -9,20 +9,29 @@ class IndexController extends Controller
 {
     public function index(Request $request)
     {
-        return inertia(
-            'Index/Index',
-            [
-                'notifications' => $request->user()
-                    ->notifications()->paginate(10)
-            ]
-        );
+        $user = $request->user();
+
+        if ($user) {
+            return inertia(
+                'Index/Index',
+                [
+                    'notifications' => $request->user()
+                        ->notifications()->paginate(10)
+                ]
+            );
+        } else {
+            return inertia(
+                'Index/Index',
+            );
+        }
     }
 
     public function show()
     {
         return inertia('Index/About');
     }
-    public function faq(){
+    public function faq()
+    {
         return inertia('Index/FAQ');
     }
 }
