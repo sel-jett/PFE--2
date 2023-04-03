@@ -12,6 +12,7 @@ use App\Http\Controllers\CourseOfferController;
 use App\Http\Controllers\RealtorCourseAcceptOfferController;
 use App\Http\Controllers\NotificationController;
 use App\Http\Controllers\NotificationSeenController;
+use App\Http\Controllers\RealtorCourseVideoController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -68,5 +69,6 @@ Route::prefix('realtor')
             ->only(['index', 'destroy', 'edit', 'update', 'create', 'store', 'show']);
         Route::resource('course.image', RealtorCourseImageController::class)
             ->only(['create', 'store', 'destroy']);
+        Route::resource('course.video', RealtorCourseVideoController::class)
+            ->only(['create', 'store', 'destroy']);
     });
-

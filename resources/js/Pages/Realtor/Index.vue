@@ -42,6 +42,9 @@
             <Link :href="route('realtor.course.image.create', { course: course.id })" class="block w-full btn-outline text-xs font-medium text-center">Images</Link>
           </div>
            <div class="mt-2">
+            <Link :href="route('realtor.course.video.create', { course: course.id })" class="block w-full btn-outline text-xs font-medium text-center">Video</Link>
+          </div>
+           <div class="mt-2">
             <Link
               :href="route('realtor.course.show', { course: course.id })"
               class="block w-full btn-outline text-xs font-medium text-center"

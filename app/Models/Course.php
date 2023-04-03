@@ -8,6 +8,8 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\HasOne;
+
 
 class Course extends Model
 {
@@ -32,6 +34,11 @@ class Course extends Model
     public function images(): HasMany
     {
         return $this->hasMany(CourseImage::class);
+    }
+
+    public function video(): HasOne
+    {
+        return $this->hasOne(CourseVideo::class);
     }
 
     public function offers(): HasMany
