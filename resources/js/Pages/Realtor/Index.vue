@@ -52,21 +52,62 @@
         </div>
       </div>
     </div>
+    <div>
+      {{ offerCount }}
+    </div>
+    <canvas ref="chart"></canvas>
     <div v-if="courses.data.length" class="w-full flex justify-center mt-4 mb-4">
       <Pagination :links="courses.links" />
     </div>
   </div>
 </template>
 
-
-
-
 <script setup>
-import { Link } from '@inertiajs/inertia-vue3'
-
+import { Link, usePage } from '@inertiajs/inertia-vue3'
+import { computed } from 'vue'
 import RealtorFilters from '@/Pages/Realtor/Index/Components/RealtorFilters.vue'
 import Pagination from '@/Components/UI/Pagination.vue'
 import CourseAdresse from '@/Components/CourseAdresse.vue';
 defineProps({courses: Object,
 filters: Object})
+
+const page = usePage();
+
+const offerCount = computed(
+  () => page.props.value.user,
+)
+</script>
+
+<script>
+import Chart from 'chart.js/auto';
+export default {
+  mounted() {
+    const ctx = this.$refs.chart.getContext('2d');
+    const myChart = new Chart(ctx, {
+      type: 'bar',
+      data: {
+        labels: ['Bar 1', 'Bar 2'],
+        datasets: [{
+          label: 'Dataset',
+          data: [10, 20],
+          backgroundColor: ['#4B5563', '#6B7280'],
+          borderWidth: 1
+        }]
+      },
+      options: {
+        responsive: true,
+        scales: {
+          xAxes: [{
+            ticks: {
+              beginAtZero: true
+            }
+          }]
+        },
+        legend: {
+          display: false
+        }
+      }
+    });
+  }
+};
 </script>
