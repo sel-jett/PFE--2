@@ -7,12 +7,13 @@ use \App\Models\Course;
 
 class IndexController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
         return inertia(
             'Index/Index',
             [
-                'message' => 'Hello from Laravel!'
+                'notifications' => $request->user()
+                    ->notifications()->paginate(10)
             ]
         );
     }
