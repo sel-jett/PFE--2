@@ -219,6 +219,7 @@ export default {
       showDropdown: false,
       showNotifications: false,
 	    activeLink: 'home',
+      isMobileMenuOpen: false
     };
   },
   methods: {

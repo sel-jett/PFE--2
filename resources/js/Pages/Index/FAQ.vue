@@ -1,6 +1,6 @@
 <template>
     <h1 class="text-3xl font-semibold my-8 text-center dark:text-white">Why <span class="text-blue-600">N</span>AJA7I?</h1>
-    <div class="w-1/2 m-auto pt-1 mb-4">
+    <div class="w-1/2 m-auto pt-1 mb-4 w-3/4 sm:w-2/3 lg:w-1/2">
         <Accordion title="What kinds of courses do you offer?">
             We offer a wide range of courses covering various topics, such as Philosphy, life and earth Sciences, Maths, Physics, and more. You can browse our <Link class="text-blue-600" :href="route('course.index')">catalog</Link> to find the courses that interest you the most.
         </Accordion>
