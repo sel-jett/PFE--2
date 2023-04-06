@@ -55,9 +55,6 @@
         </div>
       </div>
     </div>
-    <div>
-      {{ offerCount }}
-    </div>
     <!-- <canvas ref="chart"></canvas> -->
     <div v-if="courses.data.length" class="w-full flex justify-center mt-4 mb-4">
       <Pagination :links="courses.links" />

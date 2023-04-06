@@ -1,4 +1,5 @@
 <template>
+<div class="mb-112">
 
   <div>
     <div>Upload New Images</div>
@@ -30,6 +31,7 @@
     </form>
   </div>
 
+
   <div v-if="course.images.length" class="mt-4">
     <div>Current Course Images</div>
     <section class="mt-4 grid grid-cols-3 gap-4">
@@ -46,7 +48,7 @@
       </div>
     </section>
   </div>
-
+</div>
 </template>
 
 

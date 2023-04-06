@@ -1,5 +1,5 @@
 <template>
-  <form @submit.prevent="update" class="flex justify-around my-6">
+  <form @submit.prevent="update" class="flex justify-around mt-6 mb-60">
     
     <div class="w-1/3 ">
       <div>
