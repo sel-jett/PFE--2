@@ -13,7 +13,7 @@
     <h1 class="text-3xl font-semibold my-10 text-center dark:text-white">Why <span class="text-blue-600">N</span>AJA7I?</h1>
     <div class="my-6 cursor-help">
         <div class="m-auto flex flex-col items-center bg-white border border-gray-200 rounded-lg shadow md:flex-row md:max-w-xl hover:bg-gray-100 dark:border-gray-700 dark:bg-gray-800 dark:hover:bg-gray-700 hover:scale-105 transition duration-500">
-            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-80 h-80 mx-8 my-4 md:my-0 md:ml-8 text-blue-600">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-40  mx-8 my-4 md:my-0 md:ml-8 text-blue-600">
                 <path stroke-linecap="round" stroke-linejoin="round" d="M12 6.042A8.967 8.967 0 006 3.75c-1.052 0-2.062.18-3 .512v14.25A8.987 8.987 0 016 18c2.305 0 4.408.867 6 2.292m0-14.25a8.966 8.966 0 016-2.292c1.052 0 2.062.18 3 .512v14.25A8.987 8.987 0 0018 18a8.967 8.967 0 00-6 2.292m0-14.25v14.25" />
             </svg>
 
@@ -64,7 +64,7 @@
     <!-- top teachers  -->
     <div class="text-center">
         <h1 class="text-xl font-bold leading-none tracking-tight text-gray-900 md:text-2xl lg:text-4xl dark:text-white"><span class="text-blue-600 dark:text-blue-500">NAJA7I</span> is trsted by the best online teachers.</h1>
-        <div class="flex justify-center">
+        <div class="flex flex-wrap justify-center">
             <div class="mx-4 text-center my-8 w-64 max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:text-white dark:border-gray-700 hover:scale-105 transitio duration-500">
                 <img class="m-auto p-2 w-52 rounded-t-lg" src="@/../images/aderdour.png" alt="product image" />
                 <h1 class="font-semibold text-xl">Aderdour Mustapha</h1>
