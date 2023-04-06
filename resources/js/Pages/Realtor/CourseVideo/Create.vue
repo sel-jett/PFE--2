@@ -6,7 +6,7 @@
       <section class="flex items-center gap-2 my-4">
         <input
           class="border rounded-md file:px-4 file:py-2 border-gray-200 dark:border-gray-700 file:text-gray-700 file:dark:text-gray-400 file:border-0 file:bg-gray-100 file:dark:bg-gray-800 file:font-medium file:hover:bg-gray-200 file:dark:hover:bg-gray-700 file:hover:cursor-pointer file:mr-4"
-          type="file" multiple @input="addFiles"
+          type="file" @input="addVideo" accept="video/mp4" name="video" enctype="multipart/form-data" 
         />
         <button
           type="submit"
@@ -41,11 +41,17 @@ Inertia.on('progress', (event) => {
 const form = useForm({
   video: null,
 })
+
+
 const upload = () => {
+  const formData = new FormData()
+  formData.append('video', form.video)
   form.post(
     route('realtor.course.video.store', { course: props.course.id }),
+    formData
   )
 }
+
 const reset = () => form.reset('video')
 
 </script>

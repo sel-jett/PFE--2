@@ -19,20 +19,19 @@ class RealtorCourseVideoController extends Controller
 
     public function store(Course $course, Request $request)
     {
-        
         if ($request->hasFile('video')) {
             $request->validate([
-                'video.*' => 'mimes:mp4,ogx,oga,ogv,ogg,webm'
+                'video.*' => 'mimes:mp4,ogx,oga,ogv,ogg,webm|max:20000'
             ], [
+                'video.required' => 'Please select a video to upload.',
                 'video.*.mimes' => 'The file should be in one of the formats: mp4'
             ]);
-            foreach ($request->file('video') as $file) {
-                $path = $file->store('video', 'public');
+            $path = $request->file('video')->store('video', 'public');
 
-                $course->video()->save(new CourseVideo([
-                    'filename' => $path
-                ]));
-            }
+            $course->video()->create([
+                'filename' => $path
+            ]);
         }
+        return redirect()->back()->with('success', 'Video was Uploaded!');
     }
 }

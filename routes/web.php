@@ -13,6 +13,8 @@ use App\Http\Controllers\RealtorCourseAcceptOfferController;
 use App\Http\Controllers\NotificationController;
 use App\Http\Controllers\NotificationSeenController;
 use App\Http\Controllers\RealtorCourseVideoController;
+use Illuminate\Foundation\Auth\EmailVerificationRequest;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -40,6 +42,15 @@ Route::post('login', [AuthController::class, 'store'])
 Route::delete('logout', [AuthController::class, 'destroy'])
     ->name('logout');
 
+Route::get('/email/verify', function () {
+    return inertia('Auth/VerifyEmail');
+})->middleware('auth')->name('verification.notice');
+
+Route::get('/email/verify/{id}/{hash}', function (EmailVerificationRequest $request) {
+    $request->fulfill();
+    return redirect()->route('course.index')->with('success', 'Email verified');
+})->middleware('auth', 'signed')->name('verification.verify');
+
 Route::resource('notification', NotificationController::class)
     ->middleware('auth')
     ->only(['index']);
@@ -63,7 +74,7 @@ Route::put(
 
 Route::prefix('realtor')
     ->name('realtor.')
-    ->middleware('auth')
+    ->middleware('auth', 'verified')
     ->group(function () {
         Route::resource('course', RealtorCourseController::class)
             ->only(['index', 'destroy', 'edit', 'update', 'create', 'store', 'show']);
